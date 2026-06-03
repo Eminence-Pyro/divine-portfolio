@@ -18,12 +18,12 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* ── Left: Photo ── */}
           <div className="relative group">
-            <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden border border-gold/20 gold-glow">
+            <div className="relative w-full aspect-[3/4] max-w-sm mx-auto rounded-2xl overflow-hidden border border-gold/20 gold-glow">
               <Image
                 src="/images/about.jpg"
-                alt="Divine Moses Nnata — portfolio preview"
+                alt="Divine Moses Nnata — full length portrait"
                 fill
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
             </div>
