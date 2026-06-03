@@ -2,15 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --gold: #C9A84C;
-  --gold-light: #E2C46A;
-  --dark: #0A0A0A;
-}
-
-* {
-  scroll-behavior: smooth;
-}
+* { scroll-behavior: smooth; box-sizing: border-box; }
 
 body {
   background-color: #0A0A0A;
@@ -19,44 +11,41 @@ body {
   overflow-x: hidden;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #111; }
-::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 3px; }
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0f0f0f; }
+::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 4px; }
 
-/* Gold text gradient */
+/* Gold gradient text */
 .gold-text {
-  background: linear-gradient(135deg, #C9A84C 0%, #E2C46A 50%, #A8872F 100%);
+  background: linear-gradient(135deg, #C9A84C 0%, #F0D080 50%, #A8872F 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Gold border glow */
-.gold-glow {
-  box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
-}
-.gold-glow:hover {
-  box-shadow: 0 0 35px rgba(201, 168, 76, 0.5);
-}
+/* Gold glow box shadow */
+.gold-glow { box-shadow: 0 0 24px rgba(201,168,76,0.25); }
+.gold-glow:hover { box-shadow: 0 0 40px rgba(201,168,76,0.45); transition: box-shadow 0.3s ease; }
 
-/* Section fade-in animation */
+/* Section reveal on scroll */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Gradient divider */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5) 40%, rgba(201,168,76,0.5) 60%, transparent);
 }
 
-/* Noise texture overlay */
-.noise::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 1;
-}
+/* Typing cursor */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.cursor { animation: blink 1s step-end infinite; }
+
+/* Floating badge pulse */
+@keyframes floatBadge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.float-badge { animation: floatBadge 3s ease-in-out infinite; }
