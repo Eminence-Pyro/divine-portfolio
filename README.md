@@ -1,14 +1,14 @@
 # ✨ Divine Moses Nnata — Personal Portfolio
 
 > **Full-Stack Developer · IT Professional · Data Analyst**
-> Built with Next.js 14, TypeScript, and Tailwind CSS.
+> Dark & gold theme. Built with Next.js 14 + TypeScript + Tailwind CSS.
 
-🔗 **Live:** _Deploy to Vercel (see below)_
-🎨 **Theme:** Deep Black + Gold (`#C9A84C`)
+🔗 **Repo:** `github.com/Eminence-Pyro/divine-portfolio`
+🎨 **Theme:** Deep Black `#0A0A0A` + Gold `#C9A84C`
 
 ---
 
-## 🚀 Quick Start (Local Dev)
+## ⚡ Quick Start
 
 ```bash
 git clone https://github.com/Eminence-Pyro/divine-portfolio.git
@@ -21,47 +21,53 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 📁 Add Your Photos (REQUIRED)
+## 📸 Add Your Photos (Required)
 
-Place your images in `public/images/`:
+Place these in `public/images/`:
 
-| File | Usage |
+| File | Which photo to use |
 |---|---|
-| `public/images/hero.jpg` | Hero section (arms-crossed suit photo — black bg) |
-| `public/images/about.jpg` | About section (portfolio screenshot or casual photo) |
+| `public/images/hero.jpg` | Arms-crossed suit photo (upper body, dark background) |
+| `public/images/about.jpg` | Full-length suit photo (hands in pockets) |
 
-The hero photo should be portrait-oriented and ideally have a dark background to blend with the site theme.
+The site will work without them but will show blank image areas.
 
 ---
 
-## ✏️ Customise Your Content
+## ✏️ Updating Your Content
 
-**All site content lives in one file:** `src/lib/data.ts`
+**Everything lives in `src/lib/data.ts`** — this is the only file you need to edit for content.
 
-Edit this file to update:
-- Personal info (name, email, phone, location, social links)
+What you can update:
+- Name, email, phone, LinkedIn, GitHub URL
+- Headline and bio text
 - Stats (projects, years, fellowships)
-- Services / What I Do
-- Projects (add new ones, update links)
-- Tech stack
-- Experience / Timeline
-- Nav links
-
-No need to touch any other file for content changes.
+- Projects list (add new ones, update links, set `live:` URL when deployed)
+- Services / What I Do cards
+- Tech stack (add/remove techs using SimpleIcons slugs)
+- Experience timeline (add new roles)
 
 ---
 
-## 📬 Setting Up the Contact Form (EmailJS — Free)
+## 📄 Add Your CV
 
-The contact form currently opens the user's email client via `mailto:`.
-To get a proper working form that sends emails to your inbox:
+Place your CV PDF at: `public/cv/Divine-Moses-Nnata-CV.pdf`
 
-1. Go to [emailjs.com](https://www.emailjs.com/) and create a free account
-2. Create a **Service** (Gmail recommended)
-3. Create an **Email Template** — use variables: `{{name}}`, `{{email}}`, `{{subject}}`, `{{message}}`
-4. Get your **Service ID**, **Template ID**, and **Public Key**
-5. Copy `.env.local.example` to `.env.local` and fill in the values
-6. In `src/components/sections/Contact.tsx`, replace the `handleSubmit` function with:
+The "Download CV" button in the navbar and hero will link to it automatically.
+
+---
+
+## 📬 Upgrade the Contact Form (Optional — Recommended)
+
+The form currently uses a `mailto:` fallback (opens the user's email app).
+To get proper in-browser form submission without any backend:
+
+1. Sign up at [emailjs.com](https://www.emailjs.com/) — free tier is sufficient
+2. Create a Gmail service and an email template
+   - Template variables: `{{name}}`, `{{email}}`, `{{subject}}`, `{{message}}`
+3. Get your **Service ID**, **Template ID**, and **Public Key**
+4. Copy `.env.local.example` to `.env.local` and fill in the values
+5. In `src/components/sections/Contact.tsx`, replace `handleSubmit` with:
 
 ```typescript
 import emailjs from "@emailjs/browser";
@@ -73,7 +79,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     await emailjs.send(
       process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
       process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-      { name: form.name, email: form.email, subject: form.subject, message: form.message },
+      form,
       process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
     );
     setStatus("sent");
@@ -86,29 +92,75 @@ const handleSubmit = async (e: React.FormEvent) => {
 
 ---
 
-## 📄 Adding Your CV
+## 🌐 Deploy to Vercel (Free)
 
-Place your CV PDF at: `public/cv/Divine-Moses-Nnata-CV.pdf`
+Option A — Vercel dashboard:
+1. Push the repo to GitHub (already done)
+2. Go to [vercel.com/new](https://vercel.com/new)
+3. Import `Eminence-Pyro/divine-portfolio`
+4. Click Deploy — it auto-detects Next.js
 
-The "Download CV" button in the hero section will automatically link to it.
-
----
-
-## 🌐 Deploy to Vercel (Free — Recommended)
-
+Option B — Vercel CLI:
 ```bash
-npm install -g vercel
-vercel login
+npm i -g vercel
 vercel --prod
 ```
 
-Or connect the repo directly at [vercel.com/new](https://vercel.com/new) — it auto-detects Next.js.
-
-Your portfolio will be live at `https://divine-portfolio.vercel.app` (or a custom domain).
+Your live URL will be `https://divine-portfolio.vercel.app` (or a custom domain).
 
 ---
 
-## 🔧 Tech Stack
+## 🗺️ What to Build Next (Roadmap)
+
+| Priority | Feature | Notes |
+|---|---|---|
+| 🔴 High | Add hero + about photos | Drop into `public/images/` |
+| 🔴 High | Update project GitHub links | Edit `src/lib/data.ts` → `PROJECTS` |
+| 🔴 High | Add your CV PDF | Drop into `public/cv/` |
+| 🟡 Medium | Set up EmailJS contact form | See contact form section above |
+| 🟡 Medium | Add project screenshots | Replace gradient placeholders in project cards |
+| 🟡 Medium | Add Certifications section | 3MTT + any others |
+| 🟢 Low | Scroll-reveal animations | `react-intersection-observer` already installed |
+| 🟢 Low | Custom domain | Add in Vercel project settings |
+| 🟢 Low | Blog/devlog section | Use MDX or Hashnode API |
+| 🟢 Low | Analytics | Vercel Analytics (free, privacy-friendly) |
+
+---
+
+## 📁 Project Structure
+
+```
+divine-portfolio/
+├── public/
+│   ├── images/
+│   │   ├── hero.jpg         ← ADD (arms-crossed suit photo)
+│   │   └── about.jpg        ← ADD (full-length suit photo)
+│   └── cv/
+│       └── Divine-Moses-Nnata-CV.pdf  ← ADD
+├── src/
+│   ├── app/
+│   │   ├── globals.css      ← gold/dark theme, utilities
+│   │   ├── layout.tsx       ← fonts, SEO metadata
+│   │   └── page.tsx         ← assembles all sections
+│   ├── components/
+│   │   ├── Navbar.tsx       ← sticky nav, scroll tracker, mobile drawer
+│   │   ├── Footer.tsx       ← links, contact, back-to-top
+│   │   └── sections/
+│   │       ├── Hero.tsx     ← headline, photo, stats, CTAs
+│   │       ├── About.tsx    ← bio, photo, experience timeline
+│   │       ├── Services.tsx ← 4 service cards
+│   │       ├── Projects.tsx ← 6 projects, filter tabs, expand-on-click
+│   │       ├── TechStack.tsx← 14 tech icons
+│   │       └── Contact.tsx  ← form + contact details
+│   └── lib/
+│       └── data.ts          ← ALL CONTENT — edit this file
+├── tailwind.config.ts       ← gold/dark colour tokens
+└── package.json
+```
+
+---
+
+## 🔧 Stack
 
 | Layer | Tech |
 |---|---|
@@ -116,57 +168,10 @@ Your portfolio will be live at `https://divine-portfolio.vercel.app` (or a custo
 | Language | TypeScript |
 | Styling | Tailwind CSS |
 | Icons | Lucide React + SimpleIcons CDN |
-| Fonts | Inter (body) + Playfair Display (headings) |
+| Fonts | Inter + Playfair Display (Google Fonts) |
+| Images | Next.js `<Image>` (optimised) |
 | Deployment | Vercel |
 
 ---
 
-## 🗺️ Roadmap (Things to Add)
-
-- [ ] **Certifications section** — list your 3MTT certs, any others
-- [ ] **Blog section** — short articles / devlogs (use MDX or Hashnode API)
-- [ ] **Project screenshots** — replace the placeholder cards with real screenshots
-- [ ] **Scroll animations** — add Framer Motion entrance animations per section (package already installed)
-- [ ] **Dark/light toggle** — already have `next-themes` in dependencies
-- [ ] **SEO improvements** — add `og:image` (a 1200×630 banner with your photo + name)
-- [ ] **Analytics** — add Vercel Analytics or Plausible (privacy-friendly)
-- [ ] **EmailJS** — replace mailto fallback with real form submission (see contact section above)
-- [ ] **Smooth reveal animations** — use `react-intersection-observer` (already installed) to animate sections on scroll
-
----
-
-## 📂 Project Structure
-
-```
-divine-portfolio/
-├── public/
-│   ├── images/
-│   │   ├── hero.jpg        ← ADD THIS (your hero photo)
-│   │   └── about.jpg       ← ADD THIS (your about photo)
-│   └── cv/
-│       └── Divine-Moses-Nnata-CV.pdf  ← ADD THIS
-├── src/
-│   ├── app/
-│   │   ├── globals.css     ← global styles, gold theme
-│   │   ├── layout.tsx      ← fonts, metadata, SEO
-│   │   └── page.tsx        ← assembles all sections
-│   ├── components/
-│   │   ├── Navbar.tsx
-│   │   ├── Footer.tsx
-│   │   └── sections/
-│   │       ├── Hero.tsx
-│   │       ├── About.tsx
-│   │       ├── Services.tsx
-│   │       ├── Projects.tsx
-│   │       ├── TechStack.tsx
-│   │       └── Contact.tsx
-│   └── lib/
-│       └── data.ts         ← ALL CONTENT LIVES HERE
-└── tailwind.config.ts      ← gold/dark colour tokens
-```
-
----
-
-## 🤝 License
-
-Personal use — built by Divine Moses Nnata.
+*Built by Divine Moses Nnata — Eminence. Building Solutions. Impacting Lives.*
